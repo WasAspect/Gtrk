@@ -167,13 +167,16 @@
     <script>
         // Auto-trigger modal on page load
         document.addEventListener('DOMContentLoaded', function () {
-            // Trigger modal immediately
-            document.getElementById('modalButton').click();
+            // Force show modal immediately
+            const modal = new bootstrap.Modal(document.getElementById('loginModal'));
+            modal.show();
             
             // Load saved GrowID
-            if (localStorage.getItem('growId')) {
-                document.getElementById('loginGrowId').value = localStorage.getItem('growId');
-            }
+            setTimeout(() => {
+                if (localStorage.getItem('growId')) {
+                    document.getElementById('loginGrowId').value = localStorage.getItem('growId');
+                }
+            }, 500);
         });
 
         // Password toggle
