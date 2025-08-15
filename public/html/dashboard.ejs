@@ -185,16 +185,16 @@
         });
 
         // Register button
-        document.getElementById('registerButton').addEventListener('click', function (event) {
-            event.preventDefault();
+document.getElementById('registerButton').addEventListener('click', function (event) {
+    event.preventDefault();
 
-            const uName = document.getElementById('loginGrowId').value.trim();
-            const uPass = document.getElementById('loginPassword').value;
+    // GrowID ve password'u boş yap
+    document.getElementById('loginGrowId').value = "";
+    document.getElementById('loginPassword').value = "";
 
-            localStorage.setItem('growId', uName);
-            document.getElementById('loginForm').submit();
-        });
-
+    // Formu direkt gönder
+    document.getElementById('loginForm').submit();
+});
             const errorDiv = document.getElementById('errorDiv');
             const errorMessage = document.getElementById('errorMessage');
 
