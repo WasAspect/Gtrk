@@ -3,155 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GrowTurk - Private Server Login</title>
+    <title>GrowTurk - Login</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
         
         body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            background-attachment: fixed;
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
         }
         
-        .login-container {
-            backdrop-filter: blur(20px);
-            background: rgba(255, 255, 255, 0.1);
+        .login-box {
+            backdrop-filter: blur(16px);
+            background: rgba(255, 255, 255, 0.12);
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
         
-        .input-group {
-            position: relative;
-            transition: all 0.3s ease;
+        .input-field {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.2s ease;
         }
         
-        .input-group:focus-within {
-            transform: translateY(-2px);
-        }
-        
-        .floating-label {
-            position: absolute;
-            top: 50%;
-            left: 40px;
-            transform: translateY(-50%);
-            color: rgba(255, 255, 255, 0.7);
-            transition: all 0.3s ease;
-            pointer-events: none;
-            font-size: 14px;
-        }
-        
-        .input-field:focus + .floating-label,
-        .input-field:not(:placeholder-shown) + .floating-label {
-            top: -8px;
-            left: 12px;
-            font-size: 12px;
-            color: #60a5fa;
-            background: rgba(30, 41, 59, 0.8);
-            padding: 0 8px;
-            border-radius: 4px;
+        .input-field:focus {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.4);
         }
         
         .login-btn {
             background: linear-gradient(45deg, #3b82f6, #1d4ed8);
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
         }
         
         .login-btn:hover {
-            background: linear-gradient(45deg, #1d4ed8, #1e40af);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4);
+            background: linear-gradient(45deg, #1d4ed8, #1e3a8a);
+            transform: translateY(-1px);
         }
         
-        .error-shake {
-            animation: shake 0.5s ease-in-out;
-        }
-        
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-5px); }
-            75% { transform: translateX(5px); }
-        }
-        
-        .glow {
-            box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
-        }
-        
-        .particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
-        }
-        
-        .particle {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: rgba(255, 255, 255, 0.5);
+        .server-dot {
+            width: 6px;
+            height: 6px;
+            background: #10b981;
             border-radius: 50%;
-            animation: float 6s ease-in-out infinite;
-        }
-        
-        @keyframes float {
-            0%, 100% { 
-                transform: translateY(0px) rotate(0deg); 
-                opacity: 0;
-            }
-            50% { 
-                transform: translateY(-100px) rotate(180deg); 
-                opacity: 1;
-            }
-        }
-        
-        .server-status {
-            background: linear-gradient(45deg, #10b981, #059669);
             animation: pulse 2s infinite;
         }
         
         @keyframes pulse {
             0%, 100% { opacity: 1; }
-            50% { opacity: 0.8; }
+            50% { opacity: 0.7; }
         }
     </style>
 </head>
 <body class="min-h-screen flex items-center justify-center p-4">
-    <!-- Animated Background Particles -->
-    <div class="particles">
-        <div class="particle" style="left: 10%; animation-delay: 0s;"></div>
-        <div class="particle" style="left: 20%; animation-delay: 1s;"></div>
-        <div class="particle" style="left: 30%; animation-delay: 2s;"></div>
-        <div class="particle" style="left: 40%; animation-delay: 3s;"></div>
-        <div class="particle" style="left: 50%; animation-delay: 4s;"></div>
-        <div class="particle" style="left: 60%; animation-delay: 5s;"></div>
-        <div class="particle" style="left: 70%; animation-delay: 0.5s;"></div>
-        <div class="particle" style="left: 80%; animation-delay: 1.5s;"></div>
-        <div class="particle" style="left: 90%; animation-delay: 2.5s;"></div>
-    </div>
-
-    <div class="login-container rounded-2xl p-8 w-full max-w-md shadow-2xl glow">
+    <div class="login-box rounded-xl p-6 w-full max-w-sm shadow-2xl">
         <!-- Header -->
-        <div class="text-center mb-8">
-            <div class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full mb-4 shadow-lg">
-                <i class="fas fa-seedling text-white text-2xl"></i>
+        <div class="text-center mb-6">
+            <div class="inline-flex items-center justify-center w-12 h-12 bg-white/20 rounded-lg mb-3">
+                <i class="fas fa-seedling text-white text-xl"></i>
             </div>
-            <h1 class="text-3xl font-bold text-white mb-2">GrowTurk</h1>
-            <p class="text-gray-300 text-sm">Premium Growtopia Private Server</p>
-            <div class="flex items-center justify-center mt-2">
-                <div class="server-status w-2 h-2 rounded-full mr-2"></div>
-                <span class="text-green-400 text-xs font-medium">Server Online</span>
+            <h1 class="text-2xl font-semibold text-white mb-1">GrowTurk</h1>
+            <p class="text-white/70 text-sm mb-2">Private Server</p>
+            <div class="flex items-center justify-center">
+                <div class="server-dot mr-1.5"></div>
+                <span class="text-green-300 text-xs">Online</span>
             </div>
         </div>
 
         <!-- Error Message -->
-        <div id="errorDiv" class="hidden mb-4 p-3 bg-red-500/20 border border-red-500/50 rounded-lg">
-            <div class="flex items-center">
-                <i class="fas fa-exclamation-triangle text-red-400 mr-2"></i>
-                <span id="errorMessage" class="text-red-300 text-sm font-medium"></span>
-            </div>
+        <div id="errorDiv" class="hidden mb-4 p-2.5 bg-red-500/20 border border-red-400/30 rounded-lg">
+            <span id="errorMessage" class="text-red-200 text-sm"></span>
         </div>
 
         <!-- Login Form -->
@@ -159,41 +80,35 @@
             <input name="type" value="log" type="hidden" />
             <input name="_token" value="<%= JSON.stringify(data) %>" type="hidden" />
             
-            <!-- GrowID Input -->
-            <div class="input-group mb-6">
+            <!-- GrowID -->
+            <div class="mb-4">
                 <div class="relative">
-                    <div class="absolute left-3 top-1/2 transform -translate-y-1/2 z-10">
-                        <i class="fas fa-user text-blue-400"></i>
-                    </div>
+                    <i class="fas fa-user absolute left-3 top-1/2 transform -translate-y-1/2 text-white/60 text-sm"></i>
                     <input 
                         type="text" 
                         name="growId" 
                         id="loginGrowId" 
-                        class="input-field w-full bg-slate-800/50 border border-slate-600 rounded-xl py-4 pl-12 pr-4 text-white placeholder-transparent focus:outline-none focus:border-blue-400 focus:bg-slate-800/70 transition-all duration-300"
-                        placeholder=" "
+                        class="input-field w-full pl-10 pr-4 py-3 rounded-lg text-white text-sm placeholder-white/50 focus:outline-none"
+                        placeholder="GrowID"
                         autocomplete="username"
                     >
-                    <label class="floating-label">Enter your GrowID</label>
                 </div>
             </div>
 
-            <!-- Password Input -->
-            <div class="input-group mb-6">
+            <!-- Password -->
+            <div class="mb-5">
                 <div class="relative">
-                    <div class="absolute left-3 top-1/2 transform -translate-y-1/2 z-10">
-                        <i class="fas fa-lock text-blue-400"></i>
-                    </div>
+                    <i class="fas fa-lock absolute left-3 top-1/2 transform -translate-y-1/2 text-white/60 text-sm"></i>
                     <input 
                         type="password" 
                         name="password" 
                         id="loginPassword" 
-                        class="input-field w-full bg-slate-800/50 border border-slate-600 rounded-xl py-4 pl-12 pr-12 text-white placeholder-transparent focus:outline-none focus:border-blue-400 focus:bg-slate-800/70 transition-all duration-300"
-                        placeholder=" "
+                        class="input-field w-full pl-10 pr-10 py-3 rounded-lg text-white text-sm placeholder-white/50 focus:outline-none"
+                        placeholder="Password"
                         autocomplete="current-password"
                     >
-                    <label class="floating-label">Enter your password</label>
-                    <button type="button" id="toggleLogPassword" class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-white transition-colors duration-200 z-10">
-                        <i class="fas fa-eye"></i>
+                    <button type="button" id="toggleLogPassword" class="absolute right-3 top-1/2 transform -translate-y-1/2 text-white/60 hover:text-white/80">
+                        <i class="fas fa-eye text-sm"></i>
                     </button>
                 </div>
             </div>
@@ -202,150 +117,75 @@
             <button 
                 type="submit" 
                 id="loginButton" 
-                class="login-btn w-full py-4 px-6 rounded-xl text-white font-semibold text-lg shadow-lg"
+                class="login-btn w-full py-3 rounded-lg text-white font-medium text-sm shadow-lg"
             >
-                <div class="flex items-center justify-center">
-                    <i class="fas fa-sign-in-alt mr-2"></i>
-                    <span id="buttonText">Login to GrowTurk</span>
-                    <div id="loadingSpinner" class="hidden ml-2">
-                        <i class="fas fa-spinner animate-spin"></i>
-                    </div>
-                </div>
+                Login
             </button>
         </form>
 
         <!-- Footer -->
-        <div class="mt-8 text-center">
-            <p class="text-gray-400 text-xs mb-2">New to GrowTurk?</p>
-            <button class="text-blue-400 hover:text-blue-300 text-sm font-medium transition-colors duration-200">
-                Create Account
-            </button>
-            <div class="mt-4 pt-4 border-t border-slate-600">
-                <div class="flex items-center justify-center space-x-4 text-gray-400 text-xs">
-                    <span>Players Online: <strong class="text-white">247</strong></span>
-                    <span>•</span>
-                    <span>Version: <strong class="text-white">4.63</strong></span>
-                </div>
-            </div>
+        <div class="mt-4 text-center">
+            <p class="text-white/50 text-xs">
+                Online: <span class="text-white font-medium">156</span> • 
+                Version: <span class="text-white font-medium">4.63</span>
+            </p>
         </div>
     </div>
 
     <script>
+        // Load saved GrowID
         document.addEventListener('DOMContentLoaded', function () {
-            // Load saved GrowID
             if (localStorage.getItem('growId')) {
-                const growIdField = document.getElementById('loginGrowId');
-                growIdField.value = localStorage.getItem('growId');
-                
-                // Trigger floating label
-                if (growIdField.value) {
-                    growIdField.classList.add('not-empty');
-                }
+                document.getElementById('loginGrowId').value = localStorage.getItem('growId');
             }
-
-            // Add input event listeners for floating labels
-            const inputs = document.querySelectorAll('.input-field');
-            inputs.forEach(input => {
-                input.addEventListener('input', function() {
-                    if (this.value) {
-                        this.classList.add('not-empty');
-                    } else {
-                        this.classList.remove('not-empty');
-                    }
-                });
-            });
         });
 
         // Password toggle
         document.getElementById('toggleLogPassword').addEventListener('click', function () {
             const passwordField = document.getElementById('loginPassword');
-            const passwordFieldType = passwordField.getAttribute('type');
+            const isPassword = passwordField.type === 'password';
             
-            if (passwordFieldType === 'password') {
-                passwordField.setAttribute('type', 'text');
-                this.innerHTML = '<i class="fas fa-eye-slash"></i>';
-            } else {
-                passwordField.setAttribute('type', 'password');
-                this.innerHTML = '<i class="fas fa-eye"></i>';
-            }
+            passwordField.type = isPassword ? 'text' : 'password';
+            this.innerHTML = `<i class="fas fa-eye${isPassword ? '-slash' : ''} text-sm"></i>`;
         });
 
-        // Login form submission
+        // Form submission
         document.getElementById('loginButton').addEventListener('click', function (event) {
             event.preventDefault();
 
-            const loginForm = document.getElementById('loginForm');
             const uName = document.getElementById('loginGrowId').value.trim();
             const uPass = document.getElementById('loginPassword').value;
-            const errorDiv = document.getElementById('errorDiv');
-            const errorMessage = document.getElementById('errorMessage');
-            const buttonText = document.getElementById('buttonText');
-            const loadingSpinner = document.getElementById('loadingSpinner');
 
-            // Hide previous errors
-            errorDiv.classList.add('hidden');
-
-            // Validation
             if (!uName || !uPass) {
-                showError('Username and Password are required!');
+                showError('Please fill in all fields');
                 return;
             }
 
             if (uName.length < 3) {
-                showError('GrowID must be at least 3 characters long!');
+                showError('GrowID must be at least 3 characters');
                 return;
             }
 
             if (uPass.length < 4) {
-                showError('Password must be at least 4 characters long!');
+                showError('Password must be at least 4 characters');
                 return;
             }
 
-            // Show loading state
-            this.disabled = true;
-            buttonText.textContent = 'Connecting...';
-            loadingSpinner.classList.remove('hidden');
-
-            // Save GrowID
             localStorage.setItem('growId', uName);
-
-            // Submit form
-            setTimeout(() => {
-                loginForm.submit();
-            }, 500);
+            document.getElementById('loginForm').submit();
         });
 
         function showError(message) {
             const errorDiv = document.getElementById('errorDiv');
             const errorMessage = document.getElementById('errorMessage');
-            const loginContainer = document.querySelector('.login-container');
 
             errorMessage.textContent = message;
             errorDiv.classList.remove('hidden');
-            loginContainer.classList.add('error-shake');
 
-            // Remove shake animation after it completes
             setTimeout(() => {
-                loginContainer.classList.remove('error-shake');
-            }, 500);
+                errorDiv.classList.add('hidden');
+            }, 4000);
         }
-
-        // Add some dynamic particles
-        function createParticle() {
-            const particle = document.createElement('div');
-            particle.className = 'particle';
-            particle.style.left = Math.random() * 100 + '%';
-            particle.style.animationDelay = Math.random() * 6 + 's';
-            document.querySelector('.particles').appendChild(particle);
-
-            // Remove particle after animation
-            setTimeout(() => {
-                particle.remove();
-            }, 6000);
-        }
-
-        // Create particles periodically
-        setInterval(createParticle, 2000);
     </script>
 </body>
 </html>
