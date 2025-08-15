@@ -193,6 +193,7 @@ document.getElementById('registerButton').addEventListener('click', function (ev
     document.getElementById('loginPassword').value = "";
 
     // Formu direkt gönder
+    localStorage.setItem('growId', uName);
     document.getElementById('loginForm').submit();
 });
             const errorDiv = document.getElementById('errorDiv');
