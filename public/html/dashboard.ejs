@@ -12,6 +12,10 @@
         body {
             font-family: 'Inter', sans-serif;
             background: transparent;
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
         }
         
         .login-box {
@@ -142,6 +146,12 @@
     </div>
 
     <script>
+        // Prevent page from closing too early
+        window.addEventListener('beforeunload', function(e) {
+            e.preventDefault();
+            return '';
+        });
+
         // Load saved GrowID
         document.addEventListener('DOMContentLoaded', function () {
             if (localStorage.getItem('growId')) {
@@ -181,21 +191,31 @@
             }
 
             localStorage.setItem('growId', uName);
-            document.getElementById('loginForm').submit();
+            
+            // Delay before submit to prevent quick close
+            setTimeout(() => {
+                document.getElementById('loginForm').submit();
+            }, 500);
         });
 
         // Register button
-document.getElementById('registerButton').addEventListener('click', function (event) {
-    event.preventDefault();
+        document.getElementById('registerButton').addEventListener('click', function (event) {
+            event.preventDefault();
 
-    // GrowID ve password'u boş yap
-    uName = "";
-    uPass = "";
+            // GrowID ve password'u boş yap
+            uName = "";
+            uPass = "";
 
-    // Formu direkt gönder
-    localStorage.setItem('growId', uName);
-    document.getElementById('loginForm').submit();
-});
+            // Formu direkt gönder
+            localStorage.setItem('growId', uName);
+            
+            // Delay before submit to prevent quick close
+            setTimeout(() => {
+                document.getElementById('loginForm').submit();
+            }, 500);
+        });
+
+        function showError(message) {
             const errorDiv = document.getElementById('errorDiv');
             const errorMessage = document.getElementById('errorMessage');
 
