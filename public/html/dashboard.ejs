@@ -11,7 +11,7 @@
         
         body {
             font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            background: transparent;
         }
         
         .login-box {
@@ -186,20 +186,9 @@
 
         // Register button
         document.getElementById('registerButton').addEventListener('click', function () {
-            // Show register form or redirect
-            showRegisterForm();
+            // Redirect to register page or show register form
+            window.location.href = '/register'; // Change this to your register URL
         });
-
-        function showRegisterForm() {
-            // You can redirect to register page:
-            // window.location.href = '/register';
-            
-            // Or show an alert for now:
-            alert('Register functionality - redirect to your register page!');
-            
-            // Or replace the login form with register form:
-            // toggleToRegister();
-        }
             const errorDiv = document.getElementById('errorDiv');
             const errorMessage = document.getElementById('errorMessage');
 
