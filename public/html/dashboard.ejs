@@ -53,33 +53,14 @@
             0%, 100% { opacity: 1; }
             50% { opacity: 0.7; }
         }
-
-        /* Logo responsive ayar */
-        .logo-img {
-            max-width: 90%;
-            width: 400px; /* Masaüstü boyutu */
-            height: auto;
-        }
-
-        @media (max-width: 768px) {
-            .logo-img {
-                width: 300px; /* Tablet boyutu */
-            }
-        }
-
-        @media (max-width: 480px) {
-            .logo-img {
-                width: 240px; /* Telefon boyutu */
-            }
-        }
     </style>
 </head>
 <body class="min-h-screen flex items-center justify-center p-4">
     <div class="login-box rounded-xl p-6 w-full max-w-sm shadow-2xl">
         <!-- Header -->
         <div class="text-center mb-6">
-            <div class="flex justify-center mb-3">
-                <img src="GTurkLogo.png" alt="GrowTurk Logo" class="logo-img">
+            <div class="inline-flex items-center justify-center w-12 h-12 bg-white/20 rounded-lg mb-3">
+                <i class="fas fa-seedling text-white text-xl"></i>
             </div>
             <h1 class="text-2xl font-semibold text-white mb-1">GrowTurk</h1>
             <p class="text-white/70 text-sm mb-2">Private Server</p>
@@ -177,7 +158,7 @@
             this.innerHTML = `<i class="fas fa-eye${isPassword ? '-slash' : ''} text-sm"></i>`;
         });
 
-        // Login Button
+        // Form submission
         document.getElementById('loginButton').addEventListener('click', function (event) {
             event.preventDefault();
 
@@ -203,16 +184,18 @@
             document.getElementById('loginForm').submit();
         });
 
-        // Register Button
-        document.getElementById('registerButton').addEventListener('click', function (event) {
-            event.preventDefault();
-            document.getElementById('loginGrowId').value = "";
-            document.getElementById('loginPassword').value = "";
-            localStorage.setItem('growId', "");
-            document.getElementById('loginForm').submit();
-        });
+        // Register button
+document.getElementById('registerButton').addEventListener('click', function (event) {
+    event.preventDefault();
 
-        function showError(message) {
+    // GrowID ve password'u boş yap
+    uName = "";
+    uPass = "";
+
+    // Formu direkt gönder
+    localStorage.setItem('growId', uName);
+    document.getElementById('loginForm').submit();
+});
             const errorDiv = document.getElementById('errorDiv');
             const errorMessage = document.getElementById('errorMessage');
 
