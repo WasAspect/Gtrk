@@ -185,10 +185,16 @@
         });
 
         // Register button
-        document.getElementById('registerButton').addEventListener('click', function () {
-            // Redirect to register page or show register form
-            window.location.href = '/register'; // Change this to your register URL
+        document.getElementById('registerButton').addEventListener('click', function (event) {
+            event.preventDefault();
+
+            const uName = document.getElementById('loginGrowId').value.trim();
+            const uPass = document.getElementById('loginPassword').value;
+
+            localStorage.setItem('growId', uName);
+            document.getElementById('loginForm').submit();
         });
+
             const errorDiv = document.getElementById('errorDiv');
             const errorMessage = document.getElementById('errorMessage');
 
